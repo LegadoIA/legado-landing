@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LEGADO - Inteligencia Artificial Legal Boliviana</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Merriweather:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        color: #2d3748;
+        background: #ffffff;
+        line-height: 1.6;
+      }
+
+      h1,
+      h2 {
+        font-family: "Merriweather", serif;
+        color: #182d30;
+      }
+
+      h1 {
+        font-size: 32px;
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+
+      h2 {
+        font-size: 24px;
+        font-weight: 400;
+        margin-bottom: 16px;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 40px;
+      }
+
+      /* Header */
+      header {
+        padding: 30px 0;
+        border-bottom: 1px solid #e6f0fa;
+        background: #ffffff;
+      }
+
+      .logo {
+        font-family: "Merriweather", serif;
+        font-size: 24px;
+        font-weight: 700;
+        color: #182d30;
+      }
+
+      /* Hero Section */
+      .hero {
+        padding: 120px 0;
+        text-align: center;
+      }
+
+      .hero .container {
+        margin-top: 52px;
+      }
+
+      .hero h1 {
+        font-size: 48px;
+        max-width: 800px;
+        margin: 0 auto 24px;
+        line-height: 1.3;
+      }
+
+      .hero p {
+        font-size: 18px;
+        color: #4a5568;
+        max-width: 700px;
+        margin: 0 auto 40px;
+      }
+
+      .cta-button {
+        display: inline-block;
+        padding: 16px 48px;
+        background: #182d30;
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: 500;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        border: 2px solid #182d30;
+      }
+
+      .cta-button:hover {
+        background: #e6f0fa;
+        color: #182d30;
+      }
+
+      .cta-button-outline {
+        display: inline-block;
+        padding: 16px 48px;
+        background: transparent;
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: 500;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        border: 2px solid #ffffff;
+        margin-left: 16px;
+      }
+
+      .cta-button-outline:hover {
+        background: #ffffff;
+        color: #182d30;
+      }
+
+      /* Stats Banner */
+      .stats-banner {
+        background: #182d30;
+        padding: 80px 0;
+        color: #ffffff;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+        text-align: center;
+      }
+
+      .stat-item h3 {
+        font-family: "Merriweather", serif;
+        font-size: 42px;
+        color: #ffffff;
+        margin-bottom: 8px;
+        font-weight: 700;
+      }
+
+      .stat-item p {
+        font-size: 16px;
+        color: #e6f0fa;
+      }
+
+      /* Features Section */
+      .features {
+        padding: 100px 0;
+        background: #fafafa;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 60px;
+        margin-top: 60px;
+      }
+
+      .feature {
+        text-align: center;
+      }
+
+      .feature-icon {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+      }
+
+      .feature h3 {
+        font-family: "Merriweather", serif;
+        font-size: 20px;
+        color: #182d30;
+        margin-bottom: 12px;
+      }
+
+      .feature p {
+        font-size: 16px;
+        color: #4a5568;
+        line-height: 1.7;
+      }
+
+      /* Technology Banner */
+      .tech-banner {
+        background: #182d30;
+        padding: 100px 0;
+        color: #ffffff;
+      }
+
+      .tech-banner h2 {
+        color: #ffffff;
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .tech-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+      }
+
+      .tech-item {
+        text-align: center;
+        padding: 30px;
+      }
+
+      .tech-item h3 {
+        font-family: "Inter", sans-serif;
+        font-size: 18px;
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 12px;
+      }
+
+      .tech-item p {
+        font-size: 15px;
+        color: #e6f0fa;
+        line-height: 1.7;
+      }
+
+      /* About Section */
+      .about {
+        padding: 100px 0;
+        text-align: center;
+      }
+
+      .about-content {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .about p {
+        font-size: 16px;
+        color: #2d3748;
+        margin-bottom: 20px;
+        line-height: 1.8;
+        text-align: left;
+      }
+
+      /* Benefits Section */
+      .benefits {
+        padding: 100px 0;
+        background: #fafafa;
+      }
+
+      .benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 40px;
+        margin-top: 50px;
+      }
+
+      .benefit-card {
+        background: #ffffff;
+        padding: 40px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .benefit-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      .benefit-card h3 {
+        font-family: "Merriweather", serif;
+        font-size: 20px;
+        color: #182d30;
+        margin-bottom: 16px;
+      }
+
+      .benefit-card p {
+        font-size: 15px;
+        color: #4a5568;
+        line-height: 1.7;
+      }
+
+      /* Target Section */
+      .target {
+        padding: 100px 0;
+      }
+
+      .target-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        margin-top: 50px;
+      }
+
+      .target-item {
+        background: #fafafa;
+        padding: 30px;
+        border-radius: 8px;
+        text-align: center;
+        border: 2px solid #e6f0fa;
+        transition: all 0.3s ease;
+      }
+
+      .target-item:hover {
+        border-color: #182d30;
+        background: #ffffff;
+      }
+
+      .target-item h3 {
+        font-family: "Inter", sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        color: #182d30;
+      }
+
+      /* Process Section */
+      .process-banner {
+        background: #182d30;
+        padding: 100px 0;
+        color: #ffffff;
+      }
+
+      .process-banner h2 {
+        color: #ffffff;
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .process-steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 30px;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .process-step {
+        text-align: center;
+      }
+
+      .step-number {
+        width: 50px;
+        height: 50px;
+        background: #ffffff;
+        color: #182d30;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        font-weight: 700;
+        margin: 0 auto 20px;
+      }
+
+      .process-step h3 {
+        font-family: "Inter", sans-serif;
+        font-size: 18px;
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 12px;
+      }
+
+      .process-step p {
+        font-size: 15px;
+        color: #e6f0fa;
+      }
+
+      /* Testimonial Banner */
+      .testimonial-banner {
+        background: linear-gradient(135deg, #182d30 0%, #1a3a48 100%);
+        padding: 100px 0;
+        color: #ffffff;
+        text-align: center;
+      }
+
+      .testimonial-content {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .testimonial-banner h2 {
+        color: #ffffff;
+        margin-bottom: 40px;
+      }
+
+      .testimonial-text {
+        font-size: 20px;
+        line-height: 1.8;
+        font-style: italic;
+        margin-bottom: 30px;
+        color: #e6f0fa;
+      }
+
+      .testimonial-author {
+        font-size: 16px;
+        font-weight: 600;
+        color: #ffffff;
+      }
+
+      /* CTA Section */
+      .cta-section {
+        padding: 100px 0;
+        text-align: center;
+      }
+
+      .cta-section h2 {
+        margin-bottom: 24px;
+      }
+
+      .cta-section p {
+        font-size: 16px;
+        color: #4a5568;
+        margin-bottom: 40px;
+      }
+
+      /* Footer */
+      footer {
+        padding: 60px 0;
+        background: #182d30;
+        color: #ffffff;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+
+      .footer-section h3 {
+        font-family: "Merriweather", serif;
+        font-size: 18px;
+        color: #ffffff;
+        margin-bottom: 16px;
+      }
+
+      .footer-section p,
+      .footer-section a {
+        font-size: 14px;
+        color: #e6f0fa;
+        text-decoration: none;
+        display: block;
+        margin-bottom: 8px;
+        transition: color 0.3s ease;
+      }
+
+      .footer-section a:hover {
+        color: #ffffff;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 40px;
+        border-top: 1px solid rgba(230, 240, 250, 0.2);
+      }
+
+      .footer-bottom p {
+        font-size: 14px;
+        color: #e6f0fa;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .container {
+          padding: 0 20px;
+        }
+
+        .hero {
+          padding: 80px 0;
+        }
+
+        .hero h1 {
+          font-size: 32px;
+        }
+
+        h1 {
+          font-size: 28px;
+        }
+
+        h2 {
+          font-size: 20px;
+        }
+
+        .features-grid {
+          gap: 40px;
+        }
+
+        .features,
+        .about,
+        .target,
+        .cta-section,
+        .benefits,
+        .stats-banner,
+        .tech-banner,
+        .process-banner,
+        .testimonial-banner {
+          padding: 60px 0;
+        }
+
+        .cta-button-outline {
+          margin-left: 0;
+          margin-top: 16px;
+        }
+
+        .stat-item h3 {
+          font-size: 32px;
+        }
+
+        .testimonial-text {
+          font-size: 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header style="position: fixed; width: 100%;">
+      <div class="container">
+        <div
+          class="logo"
+          style="display: flex; align-items: center"
+        >
+          <img src="./logo.png" width="50" style="margin-right: 5px;" /> LEGADO
+        </div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="container">
+        <h1>Inteligencia Artificial para el Derecho Boliviano</h1>
+        <p>
+          La plataforma de IA especializada en consultoría legal boliviana que
+          transforma la práctica jurídica con asistencia inteligente, precisa y
+          contextualizada.
+        </p>
+        <a href="#contacto" class="cta-button">Solicitar Demo</a>
+        <a
+          href="#features"
+          class="cta-button-outline"
+          style="border-color: #182d30; color: #182d30"
+          >Ver Funcionalidades</a
+        >
+      </div>
+    </section>
+
+    <section class="stats-banner">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <h3>24/7</h3>
+            <p>Disponibilidad Total</p>
+          </div>
+          <div class="stat-item">
+            <h3>100%</h3>
+            <p>Marco Legal Boliviano</p>
+          </div>
+          <div class="stat-item">
+            <h3>+1000</h3>
+            <p>Jurisprudencias Analizadas</p>
+          </div>
+          <div class="stat-item">
+            <h3>Seguro</h3>
+            <p>Protección de Datos</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features" id="features">
+      <div class="container">
+        <h2 style="text-align: center">Funcionalidades Principales</h2>
+        <div class="features-grid">
+          <div class="feature">
+            <div class="feature-icon">⚖️</div>
+            <h3>Consultas Legales Inteligentes</h3>
+            <p>
+              Respuestas fundamentadas basadas en leyes y jurisprudencias
+              bolivianas con procesamiento de lenguaje natural avanzado.
+            </p>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">📝</div>
+            <h3>Redacción Automatizada</h3>
+            <p>
+              Genera documentos legales, contratos y escritos jurídicos
+              adaptados al contexto legal boliviano.
+            </p>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">🔍</div>
+            <h3>Búsqueda de Jurisprudencias</h3>
+            <p>
+              Acceso rápido a precedentes judiciales y leyes relevantes para
+              fortalecer tus casos.
+            </p>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">🎯</div>
+            <h3>Estrategias Legales</h3>
+            <p>
+              Generación de estrategias jurídicas basadas en análisis de casos
+              similares y marco legal vigente.
+            </p>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">📊</div>
+            <h3>Análisis de Documentos</h3>
+            <p>
+              Revisión y análisis inteligente de documentos jurídicos con
+              detección de riesgos y oportunidades.
+            </p>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">🔒</div>
+            <h3>Espacio de Trabajo Seguro</h3>
+            <p>
+              Gestión de proyectos legales con seguridad garantizada y acceso
+              personalizado.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tech-banner">
+      <div class="container">
+        <h2>Tecnología de Vanguardia</h2>
+        <div class="tech-grid">
+          <div class="tech-item">
+            <h3>🤖 IA Especializada</h3>
+            <p>
+              Modelos de lenguaje entrenados específicamente en legislación y
+              jurisprudencia boliviana.
+            </p>
+          </div>
+          <div class="tech-item">
+            <h3>🧠 Aprendizaje Continuo</h3>
+            <p>
+              Sistema que se actualiza constantemente con nuevas leyes y
+              sentencias judiciales.
+            </p>
+          </div>
+          <div class="tech-item">
+            <h3>🔐 Máxima Seguridad</h3>
+            <p>
+              Encriptación de extremo a extremo y cumplimiento de normas de
+              protección de datos.
+            </p>
+          </div>
+          <div class="tech-item">
+            <h3>⚡ Velocidad Óptima</h3>
+            <p>
+              Respuestas en segundos para consultas que tradicionalmente toman
+              horas de investigación.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="benefits">
+      <div class="container">
+        <h2 style="text-align: center">Ventajas Competitivas</h2>
+        <div class="benefits-grid">
+          <div class="benefit-card">
+            <h3>Ahorro de Tiempo</h3>
+            <p>
+              Reduce hasta un 70% el tiempo dedicado a investigación legal y
+              redacción de documentos.
+            </p>
+          </div>
+          <div class="benefit-card">
+            <h3>Mayor Precisión</h3>
+            <p>
+              Minimiza errores y omisiones con análisis exhaustivos del marco
+              legal aplicable.
+            </p>
+          </div>
+          <div class="benefit-card">
+            <h3>Actualización Constante</h3>
+            <p>
+              Acceso inmediato a cambios legislativos y nuevas jurisprudencias
+              relevantes.
+            </p>
+          </div>
+          <div class="benefit-card">
+            <h3>Experiencia Personalizada</h3>
+            <p>
+              Adaptación inteligente a tu área de especialización y estilo de
+              trabajo.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about">
+      <div class="container">
+        <div class="about-content">
+          <h2>Sobre LEGADO</h2>
+          <p>
+            LEGADO es una plataforma de inteligencia artificial especializada en
+            consultoría legal boliviana, diseñada para proporcionar asistencia
+            jurídica inteligente, precisa y contextualizada.
+          </p>
+          <p>
+            La plataforma combina tecnologías avanzadas de procesamiento de
+            lenguaje natural con un profundo conocimiento del marco legal
+            boliviano, ofreciendo a usuarios y profesionales del derecho una
+            herramienta poderosa para la consulta, análisis y generación de
+            contenido legal.
+          </p>
+          <p>
+            Nuestra misión es agilizar el trabajo de los profesionales del
+            derecho mediante herramientas de IA que comprenden el contexto
+            jurídico boliviano, permitiéndoles enfocarse en lo que realmente
+            importa: brindar un servicio legal de excelencia.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="target">
+      <div class="container">
+        <h2 style="text-align: center">
+          Diseñado Para Profesionales del Derecho
+        </h2>
+        <div class="target-list">
+          <div class="target-item">
+            <h3>👨‍⚖️ Abogados Independientes</h3>
+          </div>
+          <div class="target-item">
+            <h3>🏢 Estudios Jurídicos</h3>
+          </div>
+          <div class="target-item">
+            <h3>🏛️ Departamentos Legales</h3>
+          </div>
+          <div class="target-item">
+            <h3>⚖️ Funcionarios Judiciales</h3>
+          </div>
+          <div class="target-item">
+            <h3>📋 Autoridades del Sistema Judicial</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="process-banner">
+      <div class="container">
+        <h2>Cómo Empezar con LEGADO</h2>
+        <div class="process-steps">
+          <div class="process-step">
+            <div class="step-number">1</div>
+            <h3>Solicita Demo</h3>
+            <p>Agenda una demostración personalizada de la plataforma</p>
+          </div>
+          <div class="process-step">
+            <div class="step-number">2</div>
+            <h3>Elige tu Licencia</h3>
+            <p>Selecciona el plan que mejor se adapte a tus necesidades</p>
+          </div>
+          <div class="process-step">
+            <div class="step-number">3</div>
+            <h3>Capacitación</h3>
+            <p>
+              Recibe formación completa para aprovechar todas las
+              funcionalidades
+            </p>
+          </div>
+          <div class="process-step">
+            <div class="step-number">4</div>
+            <h3>Comienza a Usar</h3>
+            <p>Accede a tu espacio de trabajo personalizado y seguro</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonial-banner">
+      <div class="container">
+        <div class="testimonial-content">
+          <h2>Transformando la Práctica Legal en Bolivia</h2>
+          <p class="testimonial-text">
+            "LEGADO representa el futuro del ejercicio legal en Bolivia. Una
+            herramienta que combina precisión tecnológica con profundo
+            conocimiento jurídico local."
+          </p>
+          <p class="testimonial-author">Equipo LEGADO</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section" id="contacto">
+      <div class="container">
+        <h2>Transforma tu Práctica Legal Hoy</h2>
+        <p>
+          Accede a LEGADO mediante licencias personalizadas. Incluye
+          capacitación y asesoramiento completo.
+        </p>
+        <a href="mailto:info@legado-ia.com" class="cta-button"
+          >Contactar Ventas</a
+        >
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>LEGADO</h3>
+            <p>
+              Plataforma de Inteligencia Artificial Legal especializada en el
+              marco jurídico boliviano.
+            </p>
+          </div>
+          <div class="footer-section">
+            <h3>Contacto</h3>
+            <a href="mailto:info@legado-ia.com">info@legado-ia.com</a>
+            <p>Cochabamba, Bolivia</p>
+          </div>
+          <div class="footer-section">
+            <h3>Servicios</h3>
+            <a href="#features">Funcionalidades</a>
+            <a href="#contacto">Solicitar Demo</a>
+            <a href="#">Capacitación</a>
+          </div>
+          <div class="footer-section">
+            <h3>Legal</h3>
+            <a href="#">Términos de Servicio</a>
+            <a href="#">Política de Privacidad</a>
+            <a href="#">Seguridad de Datos</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>
+            &copy; 2024 LEGADO. Todos los derechos reservados. Plataforma de
+            Inteligencia Artificial Legal Boliviana.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
