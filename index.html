@@ -3,13 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="./logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./logo.png" type="image/x-icon" />
     <title>LEGADO - Inteligencia Artificial Legal Boliviana</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Merriweather:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@400;700;900&display=swap"
       rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     <style>
       * {
@@ -23,6 +27,7 @@
         color: #2d3748;
         background: #ffffff;
         line-height: 1.6;
+        overflow-x: hidden;
       }
 
       h1,
@@ -44,452 +49,1498 @@
       }
 
       .container {
-        max-width: 1200px;
+        max-width: 1400px;
         margin: 0 auto;
         padding: 0 40px;
       }
 
+      /* Gold color */
+      .gold {
+        background: linear-gradient(
+          135deg,
+          #d4af37e0 0%,
+          #f4e5a1 50%,
+          #d4af37 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      @keyframes shine {
+        0% {
+          background-position: -200% center;
+        }
+        100% {
+          background-position: 200% center;
+        }
+      }
+
+      .gold-shine {
+        background: linear-gradient(
+          90deg,
+          #d4af37 0%,
+          #f4e5a1 30%,
+          #ffd900c7 50%,
+          #f4e5a1 70%,
+          #d4af37 100%
+        );
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: shine 3s linear infinite;
+      }
+
+      /* Animations */
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      @keyframes gradient-shift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes pulse-glow {
+        0%,
+        100% {
+          box-shadow: 0 0 20px rgba(24, 45, 48, 0.3);
+        }
+        50% {
+          box-shadow: 0 0 40px rgba(24, 45, 48, 0.6);
+        }
+      }
+
+      @keyframes shimmer {
+        0% {
+          background-position: -1000px 0;
+        }
+        100% {
+          background-position: 1000px 0;
+        }
+      }
+
       /* Header */
       header {
-        padding: 30px 0;
-        border-bottom: 1px solid #e6f0fa;
-        background: #ffffff;
+        padding: 16px 0;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(230, 240, 250, 0.5);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        transition: all 0.4s ease;
+      }
+
+      header.scrolled {
+        box-shadow: 0 10px 40px rgba(24, 45, 48, 0.1);
+        padding: 20px 0;
       }
 
       .logo {
         font-family: "Merriweather", serif;
-        font-size: 24px;
-        font-weight: 700;
+        font-size: 26px;
+        font-weight: 900;
         color: #182d30;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .logo img {
+        filter: drop-shadow(0 4px 8px rgba(24, 45, 48, 0.2));
       }
 
       /* Hero Section */
       .hero {
-        padding: 120px 0;
-        text-align: center;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(
+          135deg,
+          #0a1f23 0%,
+          #182d30 25%,
+          #1a3a48 50%,
+          #182d30 75%,
+          #0a1f23 100%
+        );
+        background-size: 400% 400%;
+        animation: gradient-shift 15s ease infinite;
+        position: relative;
+        overflow: hidden;
+        padding-top: 100px;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+          circle,
+          rgba(230, 240, 250, 0.15) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
+        top: -200px;
+        right: -100px;
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        width: 800px;
+        height: 800px;
+        background: radial-gradient(
+          circle,
+          rgba(230, 240, 250, 0.1) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
+        bottom: -300px;
+        left: -200px;
+        animation: float 8s ease-in-out infinite;
+        animation-delay: 1s;
       }
 
       .hero .container {
-        margin-top: 52px;
+        position: relative;
+        z-index: 2;
+        animation: fadeInUp 1s ease-out;
       }
 
       .hero h1 {
-        font-size: 48px;
-        max-width: 800px;
-        margin: 0 auto 24px;
-        line-height: 1.3;
+        font-size: 64px;
+        max-width: 900px;
+        margin: 0 auto 30px;
+        line-height: 1.15;
+        color: #ffffff;
+        font-weight: 900;
+        text-align: center;
+        text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        letter-spacing: -1px;
+      }
+
+      .hero h1 span {
+        background: linear-gradient(135deg, #ffffff 0%, #e6f0fa 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
 
       .hero p {
-        font-size: 18px;
-        color: #4a5568;
-        max-width: 700px;
-        margin: 0 auto 40px;
+        font-size: 22px;
+        color: rgba(230, 240, 250, 0.95);
+        max-width: 800px;
+        margin: 0 auto 50px;
+        text-align: center;
+        line-height: 1.8;
+        font-weight: 400;
+      }
+
+      .hero-buttons {
+        text-align: center;
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
       }
 
       .cta-button {
-        display: inline-block;
-        padding: 16px 48px;
-        background: #182d30;
-        color: #ffffff;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 20px 50px;
+        background: #ffffff;
+        color: #182d30;
         text-decoration: none;
-        border-radius: 6px;
-        font-weight: 500;
-        font-size: 16px;
-        transition: all 0.3s ease;
-        border: 2px solid #182d30;
+        border-radius: 12px;
+        font-weight: 700;
+        font-size: 17px;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 2px solid #ffffff;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta-button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        transition: left 0.5s ease;
+      }
+
+      .cta-button:hover::before {
+        left: 100%;
       }
 
       .cta-button:hover {
-        background: #e6f0fa;
-        color: #182d30;
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
       }
 
       .cta-button-outline {
-        display: inline-block;
-        padding: 16px 48px;
-        background: transparent;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 20px 50px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
         color: #ffffff;
         text-decoration: none;
-        border-radius: 6px;
-        font-weight: 500;
-        font-size: 16px;
-        transition: all 0.3s ease;
-        border: 2px solid #ffffff;
-        margin-left: 16px;
+        border-radius: 12px;
+        font-weight: 700;
+        font-size: 17px;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 2px solid rgba(255, 255, 255, 0.3);
       }
 
       .cta-button-outline:hover {
-        background: #ffffff;
-        color: #182d30;
+        background: rgba(255, 255, 255, 0.2);
+        border-color: #ffffff;
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 20px 60px rgba(255, 255, 255, 0.2);
       }
 
       /* Stats Banner */
       .stats-banner {
-        background: #182d30;
-        padding: 80px 0;
+        background: linear-gradient(
+          135deg,
+          #0f2527 0%,
+          #182d30 50%,
+          #0f2527 100%
+        );
+        padding: 100px 0;
         color: #ffffff;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .stats-banner::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(230, 240, 250, 0.5),
+          transparent
+        );
       }
 
       .stats-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 40px;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 60px;
         text-align: center;
+      }
+
+      .stat-item {
+        transition: transform 0.4s ease;
+        animation: fadeInUp 0.8s ease-out forwards;
+        opacity: 0;
+      }
+
+      .stat-item:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .stat-item:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .stat-item:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      .stat-item:nth-child(4) {
+        animation-delay: 0.4s;
+      }
+
+      .stat-item:hover {
+        transform: translateY(-10px) scale(1.05);
       }
 
       .stat-item h3 {
         font-family: "Merriweather", serif;
-        font-size: 42px;
-        color: #ffffff;
-        margin-bottom: 8px;
-        font-weight: 700;
+        font-size: 56px;
+        margin-bottom: 12px;
+        font-weight: 900;
+        background: linear-gradient(
+          90deg,
+          #d4af37 0%,
+          #f4e5a1 30%,
+          #ffd900bb 50%,
+          #f4e5a1 70%,
+          #d4af37 100%
+        );
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: shine 10s linear infinite;
+        text-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
       }
 
       .stat-item p {
-        font-size: 16px;
+        font-size: 17px;
         color: #e6f0fa;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+      }
+
+      /* Problem Solution Section */
+      .problem-solution {
+        padding: 140px 0;
+        background: linear-gradient(
+          180deg,
+          #ffffff 0%,
+          #fafafa 50%,
+          #ffffff 100%
+        );
+        position: relative;
+      }
+
+      .problem-solution h2 {
+        text-align: center;
+        font-size: 48px;
+        margin-bottom: 20px;
+        font-weight: 900;
+        color: #182d30;
+      }
+
+      .problem-solution .subtitle {
+        text-align: center;
+        font-size: 20px;
+        color: #4a5568;
+        margin-bottom: 80px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .solution-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 40px;
+        margin-top: 60px;
+      }
+
+      .solution-card {
+        background: #ffffff;
+        padding: 50px 40px;
+        border-radius: 24px;
+        box-shadow: 0 10px 50px rgba(24, 45, 48, 0.08);
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 2px solid transparent;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .solution-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(90deg, #182d30, #1a3a48);
+        transform: scaleX(0);
+        transition: transform 0.5s ease;
+      }
+
+      .solution-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .solution-card:hover {
+        transform: translateY(-15px);
+        box-shadow: 0 25px 70px rgba(24, 45, 48, 0.15);
+        border-color: #182d30;
+      }
+
+      .solution-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #d4af37 0%, #f4e5a1 100%);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 30px;
+        font-size: 36px;
+        color: #182d30;
+        box-shadow: 0 10px 30px rgba(212, 175, 55, 0.35);
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .solution-icon::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.5),
+          transparent
+        );
+        transition: left 0.6s ease;
+      }
+
+      .solution-card:hover .solution-icon::before {
+        left: 100%;
+      }
+
+      .solution-card:hover .solution-icon {
+        transform: scale(1.1);
+        animation: pulse-glow 2s ease-in-out infinite;
+        box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
+      }
+
+      .solution-card h3 {
+        font-size: 24px;
+        color: #182d30;
+        margin-bottom: 16px;
+        font-weight: 700;
+        font-family: "Merriweather", serif;
+      }
+
+      .solution-card p {
+        font-size: 16px;
+        color: #4a5568;
+        line-height: 1.8;
+      }
+
+      /* Screenshots Section */
+      .screenshots {
+        padding: 140px 0;
+        background: linear-gradient(
+          135deg,
+          #0a1f23 0%,
+          #182d30 50%,
+          #0a1f23 100%
+        );
+        position: relative;
+        overflow: hidden;
+      }
+
+      .screenshots::before {
+        content: "";
+        position: absolute;
+        width: 1000px;
+        height: 1000px;
+        background: radial-gradient(
+          circle,
+          rgba(230, 240, 250, 0.05) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: pulse-glow 4s ease-in-out infinite;
+      }
+
+      .screenshots h2 {
+        text-align: center;
+        font-size: 48px;
+        margin-bottom: 20px;
+        color: #ffffff;
+        font-weight: 900;
+        position: relative;
+        z-index: 1;
+      }
+
+      .screenshots .subtitle {
+        text-align: center;
+        font-size: 20px;
+        color: #e6f0fa;
+        margin-bottom: 80px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        z-index: 1;
+      }
+
+      .screenshot-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+        gap: 60px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .screenshot-item {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(20px);
+        padding: 50px;
+        border-radius: 30px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .screenshot-item::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(
+          135deg,
+          rgba(230, 240, 250, 0.3),
+          transparent,
+          rgba(230, 240, 250, 0.3)
+        );
+        border-radius: 30px;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        z-index: -1;
+      }
+
+      .screenshot-item:hover::before {
+        opacity: 1;
+      }
+
+      .screenshot-item:hover {
+        transform: translateY(-20px) scale(1.02);
+        background: rgba(255, 255, 255, 0.05);
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+      }
+
+      .screenshot-image {
+        object-fit: contain;
+
+        height: 300px;
+        width: 100%;
+
+        background: linear-gradient(
+          135deg,
+          rgba(230, 240, 250, 0.1),
+          rgba(230, 240, 250, 0.05)
+        );
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 30px;
+        /* border: 2px dashed rgba(255, 255, 255, 0.2); */
+        position: relative;
+        overflow: hidden;
+      }
+
+      .screenshot-image img {
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 20px;
+        object-fit: contain;
+      }
+
+      .screenshot-image::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent
+        );
+        animation: shimmer 3s infinite;
+      }
+
+      .screenshot-image i {
+        font-size: 48px;
+        color: rgba(255, 255, 255, 0.3);
+      }
+
+      .screenshot-item h3 {
+        font-size: 26px;
+        color: #ffffff;
+        margin-bottom: 16px;
+        font-weight: 700;
+        font-family: "Merriweather", serif;
+      }
+
+      .screenshot-item p {
+        font-size: 17px;
+        color: #e6f0fa;
+        line-height: 1.8;
       }
 
       /* Features Section */
       .features {
-        padding: 100px 0;
-        background: #fafafa;
+        padding: 140px 0;
+        background: linear-gradient(
+          135deg,
+          #fafafa 0%,
+          #ffffff 50%,
+          #fafafa 100%
+        );
+        position: relative;
+      }
+
+      .features h2 {
+        text-align: center;
+        font-size: 48px;
+        margin-bottom: 20px;
+        font-weight: 900;
+      }
+
+      .features .subtitle {
+        text-align: center;
+        font-size: 20px;
+        color: #4a5568;
+        margin-bottom: 80px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
       }
 
       .features-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 60px;
-        margin-top: 60px;
+        grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+        gap: 35px;
       }
 
       .feature {
-        text-align: center;
+        background: #ffffff;
+        padding: 45px 35px;
+        border-radius: 20px;
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 1px solid #e6f0fa;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(24, 45, 48, 0.05);
+      }
+
+      .feature::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(212, 175, 55, 0.05) 0%,
+          transparent 70%
+        );
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+
+      .feature:hover::after {
+        opacity: 1;
+      }
+
+      .feature:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 50px rgba(24, 45, 48, 0.12);
+        border-color: #d4af37;
       }
 
       .feature-icon {
-        width: 60px;
-        height: 60px;
-        margin: 0 auto 24px;
+        width: 70px;
+        height: 70px;
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 32px;
+        color: #d4af37;
+        margin-bottom: 25px;
+        transition: all 0.4s ease;
+      }
+
+      .feature:hover .feature-icon {
+        transform: scale(1.2) rotateZ(5deg);
+        color: #ffd700;
       }
 
       .feature h3 {
         font-family: "Merriweather", serif;
-        font-size: 20px;
+        font-size: 24px;
         color: #182d30;
-        margin-bottom: 12px;
+        margin-bottom: 14px;
+        font-weight: 700;
       }
 
       .feature p {
-        font-size: 16px;
+        font-size: 20px;
         color: #4a5568;
-        line-height: 1.7;
+        line-height: 1.8;
       }
 
       /* Technology Banner */
       .tech-banner {
-        background: #182d30;
-        padding: 100px 0;
+        background: linear-gradient(
+          135deg,
+          #0f2527 0%,
+          #182d30 50%,
+          #0f2527 100%
+        );
+        padding: 140px 0;
         color: #ffffff;
+        position: relative;
+        overflow: hidden;
+      }
+
+      @keyframes particles {
+        0% {
+          transform: translateY(0) translateX(0);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100vh) translateX(50px);
+          opacity: 0;
+        }
+      }
+
+      .tech-banner::before {
+        content: "";
+        position: absolute;
+        width: 3px;
+        height: 3px;
+        background: #d4af37;
+        border-radius: 50%;
+        top: 100%;
+        left: 20%;
+        animation: particles 8s linear infinite;
+      }
+
+      .tech-banner::after {
+        content: "";
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        background: #f4e5a1;
+        border-radius: 50%;
+        top: 100%;
+        left: 70%;
+        animation: particles 10s linear infinite 2s;
       }
 
       .tech-banner h2 {
-        color: #ffffff;
         text-align: center;
-        margin-bottom: 60px;
+        margin-bottom: 20px;
+        font-size: 48px;
+        font-weight: 900;
+        position: relative;
+        z-index: 1;
+        background: linear-gradient(
+          90deg,
+          #d4af37 0%,
+          #f4e5a1 30%,
+          #ffd900bb 50%,
+          #f4e5a1 70%,
+          #d4af37 100%
+        );
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: shine 20s linear infinite;
+      }
+
+      .tech-banner .subtitle {
+        text-align: center;
+        font-size: 20px;
+        color: #e6f0fa;
+        margin-bottom: 80px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        z-index: 1;
       }
 
       .tech-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: repeat(4, 1fr);
         gap: 40px;
+        position: relative;
+        z-index: 1;
       }
 
       .tech-item {
         text-align: center;
-        padding: 30px;
+        padding: 50px 40px;
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(20px);
+        border-radius: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .tech-item::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(90deg, #ffffff, rgba(255, 255, 255, 0.5));
+        transform: scaleX(0);
+        transition: transform 0.5s ease;
+      }
+
+      .tech-item:hover::before {
+        transform: scaleX(1);
+      }
+
+      .tech-item:hover {
+        transform: translateY(-15px) scale(1.05);
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.3);
+        box-shadow: 0 25px 70px rgba(0, 0, 0, 0.3);
+      }
+
+      .tech-item i {
+        font-size: 48px;
+        margin-bottom: 24px;
+        display: inline-block;
+        transition: transform 0.4s ease;
+      }
+
+      .tech-item:hover i {
+        transform: scale(1.2) rotateY(360deg);
       }
 
       .tech-item h3 {
         font-family: "Inter", sans-serif;
-        font-size: 18px;
-        font-weight: 600;
+        font-size: 22px;
+        font-weight: 700;
         color: #ffffff;
-        margin-bottom: 12px;
+        margin-bottom: 14px;
       }
 
       .tech-item p {
-        font-size: 15px;
-        color: #e6f0fa;
-        line-height: 1.7;
-      }
-
-      /* About Section */
-      .about {
-        padding: 100px 0;
-        text-align: center;
-      }
-
-      .about-content {
-        max-width: 900px;
-        margin: 0 auto;
-      }
-
-      .about p {
         font-size: 16px;
-        color: #2d3748;
-        margin-bottom: 20px;
+        color: #e6f0fa;
         line-height: 1.8;
-        text-align: left;
       }
 
       /* Benefits Section */
       .benefits {
-        padding: 100px 0;
-        background: #fafafa;
+        padding: 140px 0;
+        background: linear-gradient(
+          180deg,
+          #fafafa 0%,
+          #ffffff 50%,
+          #fafafa 100%
+        );
+      }
+
+      .benefits h2 {
+        text-align: center;
+        font-size: 48px;
+        margin-bottom: 20px;
+        font-weight: 900;
+      }
+
+      .benefits .subtitle {
+        text-align: center;
+        font-size: 20px;
+        color: #4a5568;
+        margin-bottom: 80px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
       }
 
       .benefits-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 40px;
-        margin-top: 50px;
       }
 
       .benefit-card {
         background: #ffffff;
-        padding: 40px;
-        border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        padding: 50px 40px;
+        border-radius: 24px;
+        box-shadow: 0 10px 50px rgba(24, 45, 48, 0.08);
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 2px solid transparent;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .benefit-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(90deg, #182d30, #1a3a48);
+        transform: scaleX(0);
+        transition: transform 0.5s ease;
+      }
+
+      .benefit-card:hover::before {
+        transform: scaleX(1);
       }
 
       .benefit-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        transform: translateY(-15px) scale(1.02);
+        box-shadow: 0 25px 70px rgba(24, 45, 48, 0.15);
+        border-color: #182d30;
+      }
+
+      .benefit-card i {
+        font-size: 48px;
+        color: #182d30;
+        margin-bottom: 24px;
+        display: inline-block;
+        transition: transform 0.4s ease;
+      }
+
+      .benefit-card:hover i {
+        transform: scale(1.2) rotateZ(10deg);
       }
 
       .benefit-card h3 {
         font-family: "Merriweather", serif;
-        font-size: 20px;
+        font-size: 24px;
         color: #182d30;
         margin-bottom: 16px;
+        font-weight: 700;
       }
 
       .benefit-card p {
-        font-size: 15px;
+        font-size: 16px;
         color: #4a5568;
-        line-height: 1.7;
+        line-height: 1.8;
+      }
+
+      /* About Section */
+      .about {
+        padding: 140px 0;
+        background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+        position: relative;
+      }
+
+      .about::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 300px;
+        background: radial-gradient(
+          ellipse at top,
+          rgba(212, 175, 55, 0.05) 0%,
+          transparent 70%
+        );
+      }
+
+      .about-content {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: #ffffff;
+        padding: 60px;
+        border-radius: 24px;
+        box-shadow: 0 10px 50px rgba(24, 45, 48, 0.08);
+        border: 1px solid #e6f0fa;
+        position: relative;
+        z-index: 1;
+      }
+
+      .about-content::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 5px;
+        height: 100%;
+        background: linear-gradient(
+          180deg,
+          #d4af37 0%,
+          #f4e5a1 50%,
+          #d4af37 100%
+        );
+        border-radius: 24px 0 0 24px;
+      }
+
+      .about h2 {
+        font-size: 48px;
+        margin-bottom: 40px;
+        font-weight: 900;
+        text-align: center;
+        position: relative;
+      }
+
+      .about h2::after {
+        content: "";
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(90deg, #d4af37, #ffd700, #d4af37);
+        border-radius: 2px;
+      }
+
+      .about p {
+        font-size: 17px;
+        color: #2d3748;
+        margin-bottom: 26px;
+        line-height: 2;
+        text-align: justify;
+      }
+
+      .about p:first-of-type {
+        font-size: 19px;
+        font-weight: 500;
+        color: #182d30;
       }
 
       /* Target Section */
       .target {
-        padding: 100px 0;
+        padding: 140px 0;
+        background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);
+      }
+
+      .target h2 {
+        text-align: center;
+        font-size: 48px;
+        margin-bottom: 20px;
+        font-weight: 900;
+      }
+
+      .target .subtitle {
+        text-align: center;
+        font-size: 20px;
+        color: #4a5568;
+        margin-bottom: 80px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
       }
 
       .target-list {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 30px;
-        margin-top: 50px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 35px;
+        max-width: 1300px;
+        margin: 0 auto;
       }
 
       .target-item {
-        background: #fafafa;
-        padding: 30px;
-        border-radius: 8px;
+        background: #ffffff;
+        padding: 45px 35px;
+        border-radius: 20px;
         text-align: center;
         border: 2px solid #e6f0fa;
-        transition: all 0.3s ease;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 0 5px 25px rgba(24, 45, 48, 0.05);
+        position: relative;
+        overflow: hidden;
+        flex: 0 1 calc(20% - 28px);
+        min-width: 220px;
+      }
+
+      .target-item::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, #182d30, #1a3a48);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        z-index: 0;
+      }
+
+      .target-item:hover::before {
+        opacity: 1;
+      }
+
+      .target-item i {
+        font-size: 48px;
+        color: #182d30;
+        margin-bottom: 20px;
+        position: relative;
+        z-index: 1;
+        transition: all 0.4s ease;
+      }
+
+      .target-item:hover i {
+        color: #ffffff;
+        transform: scale(1.2);
       }
 
       .target-item:hover {
         border-color: #182d30;
-        background: #ffffff;
+        transform: translateY(-10px);
+        box-shadow: 0 20px 60px rgba(24, 45, 48, 0.2);
       }
 
       .target-item h3 {
         font-family: "Inter", sans-serif;
-        font-size: 16px;
-        font-weight: 600;
+        font-size: 18px;
+        font-weight: 700;
         color: #182d30;
+        transition: color 0.4s ease;
+        position: relative;
+        z-index: 1;
+      }
+
+      .target-item:hover h3 {
+        color: #ffffff;
       }
 
       /* Process Section */
       .process-banner {
-        background: #182d30;
-        padding: 100px 0;
+        background: linear-gradient(
+          135deg,
+          #0f2527 0%,
+          #182d30 50%,
+          #0f2527 100%
+        );
+        padding: 140px 0;
         color: #ffffff;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .process-banner::before {
+        content: "";
+        position: absolute;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+          circle,
+          rgba(230, 240, 250, 0.08) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
+        bottom: -300px;
+        left: -100px;
+        animation: float 12s ease-in-out infinite;
       }
 
       .process-banner h2 {
         color: #ffffff;
         text-align: center;
-        margin-bottom: 60px;
+        margin-bottom: 20px;
+        font-size: 48px;
+        font-weight: 900;
+        position: relative;
+        z-index: 1;
+      }
+
+      .process-banner .subtitle {
+        text-align: center;
+        font-size: 20px;
+        color: #e6f0fa;
+        margin-bottom: 80px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        z-index: 1;
       }
 
       .process-steps {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 30px;
-        max-width: 1000px;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 50px;
+        max-width: 1300px;
         margin: 0 auto;
+        position: relative;
+        z-index: 1;
       }
 
       .process-step {
         text-align: center;
+        position: relative;
+        transition: transform 0.4s ease;
+      }
+
+      .process-step:hover {
+        transform: translateY(-10px);
       }
 
       .step-number {
-        width: 50px;
-        height: 50px;
+        width: 90px;
+        height: 90px;
         background: #ffffff;
         color: #182d30;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 24px;
-        font-weight: 700;
-        margin: 0 auto 20px;
+        font-size: 36px;
+        font-weight: 900;
+        margin: 0 auto 30px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        transition: all 0.4s ease;
+        position: relative;
+      }
+
+      .step-number::before {
+        content: "";
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        right: -5px;
+        bottom: -5px;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        animation: pulse-glow 2s ease-in-out infinite;
+      }
+
+      .process-step:hover .step-number {
+        transform: scale(1.15) rotateY(360deg);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
       }
 
       .process-step h3 {
         font-family: "Inter", sans-serif;
-        font-size: 18px;
-        font-weight: 600;
+        font-size: 22px;
+        font-weight: 700;
         color: #ffffff;
-        margin-bottom: 12px;
+        margin-bottom: 14px;
       }
 
       .process-step p {
-        font-size: 15px;
+        font-size: 16px;
         color: #e6f0fa;
+        line-height: 1.8;
       }
 
       /* Testimonial Banner */
       .testimonial-banner {
-        background: linear-gradient(135deg, #182d30 0%, #1a3a48 100%);
-        padding: 100px 0;
+        background: linear-gradient(
+          135deg,
+          #0a1f23 0%,
+          #182d30 50%,
+          #0a1f23 100%
+        );
+        padding: 140px 0;
         color: #ffffff;
         text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .testimonial-banner::before {
+        content: '"';
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 300px;
+        color: rgba(255, 255, 255, 0.03);
+        font-family: "Merriweather", serif;
+        line-height: 1;
+        font-weight: 900;
       }
 
       .testimonial-content {
-        max-width: 800px;
+        max-width: 900px;
         margin: 0 auto;
+        position: relative;
+        z-index: 1;
       }
 
       .testimonial-banner h2 {
         color: #ffffff;
-        margin-bottom: 40px;
+        margin-bottom: 50px;
+        font-size: 48px;
+        font-weight: 900;
       }
 
       .testimonial-text {
-        font-size: 20px;
+        font-size: 24px;
         line-height: 1.8;
         font-style: italic;
-        margin-bottom: 30px;
+        margin-bottom: 40px;
         color: #e6f0fa;
+        font-weight: 400;
       }
 
       .testimonial-author {
-        font-size: 16px;
-        font-weight: 600;
+        font-size: 18px;
+        font-weight: 700;
         color: #ffffff;
       }
 
       /* CTA Section */
       .cta-section {
-        padding: 100px 0;
+        padding: 140px 0;
         text-align: center;
+        background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
       }
 
       .cta-section h2 {
         margin-bottom: 24px;
+        font-size: 48px;
+        font-weight: 900;
       }
 
       .cta-section p {
-        font-size: 16px;
+        font-size: 20px;
         color: #4a5568;
-        margin-bottom: 40px;
+        margin-bottom: 50px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.8;
       }
 
       /* Footer */
       footer {
-        padding: 60px 0;
-        background: #182d30;
+        padding: 100px 0 50px;
+        background: linear-gradient(135deg, #0f2527 0%, #182d30 100%);
         color: #ffffff;
+        position: relative;
       }
 
       .footer-content {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 40px;
-        margin-bottom: 40px;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 60px;
+        margin-bottom: 60px;
       }
 
       .footer-section h3 {
         font-family: "Merriweather", serif;
-        font-size: 18px;
+        font-size: 22px;
         color: #ffffff;
-        margin-bottom: 16px;
+        margin-bottom: 24px;
+        font-weight: 700;
       }
 
       .footer-section p,
       .footer-section a {
-        font-size: 14px;
+        font-size: 16px;
         color: #e6f0fa;
         text-decoration: none;
         display: block;
-        margin-bottom: 8px;
-        transition: color 0.3s ease;
+        margin-bottom: 12px;
+        transition: all 0.3s ease;
       }
 
       .footer-section a:hover {
         color: #ffffff;
+        padding-left: 8px;
       }
 
       .footer-bottom {
         text-align: center;
-        padding-top: 40px;
+        padding-top: 50px;
         border-top: 1px solid rgba(230, 240, 250, 0.2);
       }
 
       .footer-bottom p {
-        font-size: 14px;
+        font-size: 15px;
         color: #e6f0fa;
       }
 
       /* Responsive */
+      @media (max-width: 968px) {
+        .solution-cards,
+        .screenshot-container {
+          grid-template-columns: 1fr;
+        }
+      }
+
       @media (max-width: 768px) {
         .container {
           padding: 0 20px;
         }
 
         .hero {
-          padding: 80px 0;
+          padding: 140px 0 80px;
+          min-height: auto;
         }
 
         .hero h1 {
-          font-size: 32px;
+          font-size: 38px;
         }
 
-        h1 {
-          font-size: 28px;
+        .hero p {
+          font-size: 18px;
+        }
+
+        .hero-buttons {
+          flex-direction: column;
+        }
+
+        .cta-button,
+        .cta-button-outline {
+          width: 100%;
+          text-align: center;
+          justify-content: center;
         }
 
         h2 {
-          font-size: 20px;
+          font-size: 36px !important;
         }
 
-        .features-grid {
-          gap: 40px;
+        .subtitle {
+          font-size: 17px !important;
         }
 
         .features,
@@ -500,52 +1551,86 @@
         .stats-banner,
         .tech-banner,
         .process-banner,
-        .testimonial-banner {
-          padding: 60px 0;
-        }
-
-        .cta-button-outline {
-          margin-left: 0;
-          margin-top: 16px;
+        .testimonial-banner,
+        .problem-solution,
+        .screenshots {
+          padding: 80px 0 !important;
         }
 
         .stat-item h3 {
-          font-size: 32px;
+          font-size: 42px;
         }
 
         .testimonial-text {
-          font-size: 18px;
+          font-size: 20px;
+        }
+
+        .features-grid,
+        .benefits-grid,
+        .target-list,
+        .solution-cards,
+        .tech-grid,
+        .process-steps,
+        .footer-content {
+          grid-template-columns: 1fr !important;
+        }
+
+        .target-list {
+          display: grid;
+        }
+
+        .target-item {
+          flex: 1 1 100%;
+        }
+
+        .feature,
+        .benefit-card,
+        .solution-card {
+          padding: 40px 30px;
+        }
+
+        .screenshot-container {
+          grid-template-columns: 1fr;
+        }
+
+        .screenshot-item {
+          padding: 30px;
+        }
+
+        .about-content {
+          padding: 40px 30px;
         }
       }
     </style>
   </head>
   <body>
-    <header style="position: fixed; width: 100%;">
+    <header id="header">
       <div class="container">
-        <div
-          class="logo"
-          style="display: flex; align-items: center"
-        >
-          <img src="./logo.png" width="50" style="margin-right: 5px;" /> LEGADO
+        <div class="logo">
+          <img src="./logo.png" width="50" alt="LEGADO Logo" /> LEGADO
         </div>
       </div>
     </header>
 
     <section class="hero">
       <div class="container">
-        <h1>Inteligencia Artificial para el Derecho Boliviano</h1>
+        <h1>
+          Inteligencia Artificial para el
+          <span class="gold-shine">Derecho Boliviano</span>
+        </h1>
         <p>
           La plataforma de IA especializada en consultoría legal boliviana que
           transforma la práctica jurídica con asistencia inteligente, precisa y
-          contextualizada.
+          contextualizada. Reduce hasta 70% el tiempo en investigación legal.
         </p>
-        <a href="#contacto" class="cta-button">Solicitar Demo</a>
-        <a
-          href="#features"
-          class="cta-button-outline"
-          style="border-color: #182d30; color: #182d30"
-          >Ver Funcionalidades</a
-        >
+        <div class="hero-buttons">
+          <a href="#contacto" class="cta-button">
+            <i class="fas fa-rocket"></i> Solicitar Demo
+          </a>
+          <a href="#features" class="cta-button-outline">
+            <i class="fas fa-chevron-down"></i> Ver Funcionalidades
+          </a>
+        </div>
       </div>
     </section>
 
@@ -561,12 +1646,121 @@
             <p>Marco Legal Boliviano</p>
           </div>
           <div class="stat-item">
-            <h3>+1000</h3>
-            <p>Jurisprudencias Analizadas</p>
+            <h3>Continua</h3>
+            <p>Actualización del Sistema</p>
           </div>
           <div class="stat-item">
-            <h3>Seguro</h3>
-            <p>Protección de Datos</p>
+            <h3>70%</h3>
+            <p>Reducción de Tiempo</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="problem-solution">
+      <div class="container">
+        <h2>¿Qué Resuelve LEGADO?</h2>
+        <p class="subtitle">
+          Una solución integral que transforma los desafíos más complejos del
+          ejercicio legal en procesos eficientes y automatizados
+        </p>
+        <div class="solution-cards">
+          <div class="solution-card">
+            <div class="solution-icon">
+              <i class="fas fa-clock"></i>
+            </div>
+            <h3>Ahorro de Tiempo Radical</h3>
+            <p>
+              Elimina horas de investigación manual. LEGADO procesa miles de
+              documentos legales en segundos, entregando respuestas precisas y
+              fundamentadas al instante.
+            </p>
+          </div>
+          <div class="solution-card">
+            <div class="solution-icon">
+              <i class="fas fa-search"></i>
+            </div>
+            <h3>Búsqueda Inteligente</h3>
+            <p>
+              Encuentra jurisprudencias y precedentes relevantes usando lenguaje
+              natural. No más búsquedas manuales en bases de datos
+              desorganizadas.
+            </p>
+          </div>
+          <div class="solution-card">
+            <div class="solution-icon">
+              <i class="fas fa-file-contract"></i>
+            </div>
+            <h3>Generación Automática</h3>
+            <p>
+              Crea documentos legales, contratos, proyectos de sentencia y
+              escritos jurídicos con citas correctas en minutos, no en días.
+            </p>
+          </div>
+          <div class="solution-card">
+            <div class="solution-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h3>Análisis Predictivo</h3>
+            <p>
+              Anticipa resultados judiciales basándote en análisis de
+              jurisprudencia histórica y patrones de decisión judicial.
+            </p>
+          </div>
+          <div class="solution-card">
+            <div class="solution-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>Seguridad Garantizada</h3>
+            <p>
+              Máxima confidencialidad con encriptación de extremo a extremo. Tu
+              información institucional está completamente protegida.
+            </p>
+          </div>
+          <div class="solution-card">
+            <div class="solution-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h3>Capacitación Continua</h3>
+            <p>
+              Soporte técnico permanente y capacitación presencial/virtual para
+              que tu equipo aproveche al máximo la plataforma.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="screenshots">
+      <div class="container">
+        <h2>La Plataforma en Acción</h2>
+        <p class="subtitle">
+          Descubre cómo LEGADO transforma la experiencia legal con interfaces
+          intuitivas y potentes capacidades de IA
+        </p>
+        <div class="screenshot-container">
+          <div class="screenshot-item">
+            <div class="screenshot-image">
+              <img src="./image.png" alt="" srcset="" />
+            </div>
+            <h3>Interfaz de Consulta Legal</h3>
+            <p>
+              Realiza consultas en lenguaje natural y recibe respuestas
+              fundamentadas con citas a leyes y jurisprudencias bolivianas en
+              segundos. La IA comprende el contexto y entrega información
+              precisa.
+            </p>
+          </div>
+          <div class="screenshot-item">
+            <div class="screenshot-image">
+              <img src="./image.png" alt="" srcset="" />
+            </div>
+            <h3>Generador de Documentos</h3>
+            <p>
+              Genera automáticamente contratos, proyectos de sentencia,
+              memoriales y cualquier documento legal con formato profesional y
+              citas correctas al marco legal boliviano.
+            </p>
           </div>
         </div>
       </div>
@@ -574,10 +1768,16 @@
 
     <section class="features" id="features">
       <div class="container">
-        <h2 style="text-align: center">Funcionalidades Principales</h2>
+        <h2>Funcionalidades Principales</h2>
+        <p class="subtitle">
+          Herramientas de IA diseñadas específicamente para las necesidades del
+          sistema legal boliviano
+        </p>
         <div class="features-grid">
           <div class="feature">
-            <div class="feature-icon">⚖️</div>
+            <div class="feature-icon">
+              <i class="fas fa-balance-scale"></i>
+            </div>
             <h3>Consultas Legales Inteligentes</h3>
             <p>
               Respuestas fundamentadas basadas en leyes y jurisprudencias
@@ -585,7 +1785,9 @@
             </p>
           </div>
           <div class="feature">
-            <div class="feature-icon">📝</div>
+            <div class="feature-icon">
+              <i class="fas fa-pen-fancy"></i>
+            </div>
             <h3>Redacción Automatizada</h3>
             <p>
               Genera documentos legales, contratos y escritos jurídicos
@@ -593,68 +1795,115 @@
             </p>
           </div>
           <div class="feature">
-            <div class="feature-icon">🔍</div>
-            <h3>Búsqueda de Jurisprudencias</h3>
+            <div class="feature-icon">
+              <i class="fas fa-book"></i>
+            </div>
+            <h3>Búsqueda Semántica</h3>
             <p>
-              Acceso rápido a precedentes judiciales y leyes relevantes para
-              fortalecer tus casos.
+              Búsqueda en lenguaje natural de jurisprudencias y leyes relevantes
+              con resultados precisos y contextualizados.
             </p>
           </div>
           <div class="feature">
-            <div class="feature-icon">🎯</div>
-            <h3>Estrategias Legales</h3>
+            <div class="feature-icon">
+              <i class="fas fa-brain"></i>
+            </div>
+            <h3>Análisis Predictivo</h3>
             <p>
-              Generación de estrategias jurídicas basadas en análisis de casos
-              similares y marco legal vigente.
+              Análisis predictivo de jurisprudencia para anticipar resultados y
+              construir estrategias legales más sólidas.
             </p>
           </div>
           <div class="feature">
-            <div class="feature-icon">📊</div>
+            <div class="feature-icon">
+              <i class="fas fa-gavel"></i>
+            </div>
+            <h3>Proyectos de Sentencia</h3>
+            <p>
+              Generación automática de proyectos de sentencia con citas
+              correctas y estructura profesional adaptada a estándares
+              bolivianos.
+            </p>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">
+              <i class="fas fa-file-alt"></i>
+            </div>
             <h3>Análisis de Documentos</h3>
             <p>
-              Revisión y análisis inteligente de documentos jurídicos con
-              detección de riesgos y oportunidades.
+              Revisión y análisis inteligente de documentos jurídicos complejos
+              con detección de riesgos y oportunidades.
+            </p>
+          </div>
+          <!-- <div class="feature">
+            <div class="feature-icon">
+              <i class="fas fa-chart-bar"></i>
+            </div>
+            <h3>Reportes Estadísticos</h3>
+            <p>
+              Generación de reportes estadísticos trimestrales para el Pleno con
+              análisis detallado de tendencias y métricas clave.
+            </p>
+          </div> -->
+          <!-- <div class="feature">
+            <div class="feature-icon">
+              <i class="fas fa-lock"></i>
+            </div>
+            <h3>Espacio de Trabajo Seguro</h3>
+            <p>
+              Gestión de proyectos legales con seguridad garantizada y
+              encriptación.
             </p>
           </div>
           <div class="feature">
-            <div class="feature-icon">🔒</div>
-            <h3>Espacio de Trabajo Seguro</h3>
+            <div class="feature-icon">
+              <i class="fas fa-chalkboard-teacher"></i>
+            </div>
+            <h3>Capacitación y Soporte</h3>
             <p>
-              Gestión de proyectos legales con seguridad garantizada y acceso
-              personalizado.
+              Capacitación presencial y virtual permanente, además de soporte
+              técnico continuo para maximizar el aprovechamiento.
             </p>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>
 
     <section class="tech-banner">
       <div class="container">
-        <h2>Tecnología de Vanguardia</h2>
+        <h2>Tecnología de Última Generación</h2>
+        <p class="subtitle">
+          Potencia tu práctica legal con las tecnologías de IA más avanzadas
+          adaptadas al contexto boliviano
+        </p>
         <div class="tech-grid">
           <div class="tech-item">
-            <h3>🤖 IA Especializada</h3>
+            <i class="fas fa-robot"></i>
+            <h3>IA Especializada</h3>
             <p>
               Modelos de lenguaje entrenados específicamente en legislación y
               jurisprudencia boliviana.
             </p>
           </div>
           <div class="tech-item">
-            <h3>🧠 Aprendizaje Continuo</h3>
+            <i class="fas fa-sync-alt"></i>
+            <h3>Aprendizaje Continuo</h3>
             <p>
               Sistema que se actualiza constantemente con nuevas leyes y
               sentencias judiciales.
             </p>
           </div>
           <div class="tech-item">
-            <h3>🔐 Máxima Seguridad</h3>
+            <i class="fas fa-user-shield"></i>
+            <h3>Espacio Seguro</h3>
             <p>
               Encriptación de extremo a extremo y cumplimiento de normas de
               protección de datos.
             </p>
           </div>
           <div class="tech-item">
-            <h3>⚡ Velocidad Óptima</h3>
+            <i class="fas fa-bolt"></i>
+            <h3>Velocidad Óptima</h3>
             <p>
               Respuestas en segundos para consultas que tradicionalmente toman
               horas de investigación.
@@ -666,9 +1915,14 @@
 
     <section class="benefits">
       <div class="container">
-        <h2 style="text-align: center">Ventajas Competitivas</h2>
+        <h2>Ventajas Competitivas</h2>
+        <p class="subtitle">
+          Beneficios tangibles que transformarán la eficiencia de tu práctica
+          legal
+        </p>
         <div class="benefits-grid">
           <div class="benefit-card">
+            <i class="fas fa-hourglass-half"></i>
             <h3>Ahorro de Tiempo</h3>
             <p>
               Reduce hasta un 70% el tiempo dedicado a investigación legal y
@@ -676,6 +1930,7 @@
             </p>
           </div>
           <div class="benefit-card">
+            <i class="fas fa-bullseye"></i>
             <h3>Mayor Precisión</h3>
             <p>
               Minimiza errores y omisiones con análisis exhaustivos del marco
@@ -683,6 +1938,7 @@
             </p>
           </div>
           <div class="benefit-card">
+            <i class="fas fa-redo-alt"></i>
             <h3>Actualización Constante</h3>
             <p>
               Acceso inmediato a cambios legislativos y nuevas jurisprudencias
@@ -690,6 +1946,7 @@
             </p>
           </div>
           <div class="benefit-card">
+            <i class="fas fa-user-cog"></i>
             <h3>Experiencia Personalizada</h3>
             <p>
               Adaptación inteligente a tu área de especialización y estilo de
@@ -728,24 +1985,30 @@
 
     <section class="target">
       <div class="container">
-        <h2 style="text-align: center">
-          Diseñado Para Profesionales del Derecho
-        </h2>
+        <h2>Diseñado Para Profesionales del Derecho</h2>
+        <p class="subtitle">
+          Soluciones adaptadas para cada rol del sistema judicial boliviano
+        </p>
         <div class="target-list">
           <div class="target-item">
-            <h3>👨‍⚖️ Abogados Independientes</h3>
+            <i class="fas fa-user-tie"></i>
+            <h3>Abogados Independientes</h3>
           </div>
           <div class="target-item">
-            <h3>🏢 Estudios Jurídicos</h3>
+            <i class="fas fa-building"></i>
+            <h3>Estudios Jurídicos</h3>
           </div>
           <div class="target-item">
-            <h3>🏛️ Departamentos Legales</h3>
+            <i class="fas fa-briefcase"></i>
+            <h3>Departamentos Legales</h3>
           </div>
           <div class="target-item">
-            <h3>⚖️ Funcionarios Judiciales</h3>
+            <i class="fas fa-balance-scale-right"></i>
+            <h3>Funcionarios Judiciales</h3>
           </div>
           <div class="target-item">
-            <h3>📋 Autoridades del Sistema Judicial</h3>
+            <i class="fas fa-landmark"></i>
+            <h3>Autoridades del Sistema Judicial</h3>
           </div>
         </div>
       </div>
@@ -754,6 +2017,9 @@
     <section class="process-banner">
       <div class="container">
         <h2>Cómo Empezar con LEGADO</h2>
+        <p class="subtitle">
+          Un proceso simple y efectivo para transformar tu práctica legal
+        </p>
         <div class="process-steps">
           <div class="process-step">
             <div class="step-number">1</div>
@@ -803,9 +2069,9 @@
           Accede a LEGADO mediante licencias personalizadas. Incluye
           capacitación y asesoramiento completo.
         </p>
-        <a href="mailto:info@legado-ia.com" class="cta-button"
-          >Contactar Ventas</a
-        >
+        <a href="mailto:info@legado-ia.com" class="cta-button">
+          <i class="fas fa-envelope"></i> Contactar Ventas
+        </a>
       </div>
     </section>
 
@@ -821,8 +2087,9 @@
           </div>
           <div class="footer-section">
             <h3>Contacto</h3>
-            <a href="mailto:info@legado-ia.com">info@legado-ia.com</a>
-            <p>Cochabamba, Bolivia</p>
+            <a href="mailto:info@legado-ia.com"
+              ><i class="fas fa-envelope"></i> info@legado-ia.com</a
+            >
           </div>
           <div class="footer-section">
             <h3>Servicios</h3>
@@ -836,12 +2103,6 @@
             <a href="#">Política de Privacidad</a>
             <a href="#">Seguridad de Datos</a>
           </div>
-        </div>
-        <div class="footer-bottom">
-          <p>
-            &copy; 2024 LEGADO. Todos los derechos reservados. Plataforma de
-            Inteligencia Artificial Legal Boliviana.
-          </p>
         </div>
       </div>
     </footer>
